@@ -1,0 +1,33 @@
+version: "3.9" 
+
+services:
+  busquedacomics:
+    build: ./servicios/busqueda
+    ports:
+      - '8005:8005'
+    volumes:
+      - ./servicios/busqueda:/app
+  
+  usuarios:
+    build: ./servicios/usuarios
+    ports:
+      - '8000:8000'
+    volumes:
+    - ./servicios/usuarios:/app
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    container_name: "mongodb"
+    hostname: host-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+    # del lado izquierdo es nuestra maquina
+    # el derecho es lo de contenedor
+    # se divide antes y depues de los puntos
+      - './data:/data/db'
+    ports:
+    # la misma logica de los puntos
+        - '27017:27017'
