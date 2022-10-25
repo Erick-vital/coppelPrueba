@@ -4,8 +4,8 @@ from urllib import response
 from fastapi import APIRouter, status, Depends, HTTPException
 from models.usermodel import UserRequest
 from passlib.context import CryptContext
-#from config.example import mycol
-import json 
+from config.example import mycol
+import json, os 
 from bson.json_util import dumps
 from jose import JWTError, jwt
 from typing import Union
@@ -16,40 +16,9 @@ router = APIRouter()
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-SECRET_KEY = 'a35ae5dd7358614df9bc97c6290780cf9c30164b012373ee53c4b0fee249c7fb'
+SECRET_KEY = os.getenv('SECRET_KEY')
 ALGORITHM = 'HS256'
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
-
-from pymongo import MongoClient, errors
-
-DOMAIN = 'localhost'
-PORT = 27017
-
-try:
-    client = MongoClient(
-        host = [DOMAIN + ':' + str(PORT)],
-        serverSelectionTimeoutMS = 3000, # 3 second timeout
-        username = 'root',
-        password = 'admin'
-    )
-    # print the version of MongoDB server if connection successful
-    print ("server version:", client.server_info()["version"])
-
-    mydb = client['mydatabase']
-    mycol = mydb["customers"]
-    # mydict = { "name": "John", "address": "Highway 37" }
-
-    # x = mycol.insert_one(mydict)
-
-    # get the database_names from the MongoClient()
-    database_names = client.list_database_names()
-except errors.ServerSelectionTimeoutError as err:
-    # set the client and DB name list to 'None' and `[]` if exception
-    client = None
-    database_names = []
-
-    # catch pymongo.errors.ServerSelectionTimeoutError
-    print ("pymongo ERROR:", err)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 

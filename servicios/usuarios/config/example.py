@@ -1,6 +1,6 @@
 from pymongo import MongoClient, errors
 
-DOMAIN = 'localhost'
+DOMAIN = 'host-mongo'
 PORT = 27017
 
 try:
