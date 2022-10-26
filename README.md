@@ -4,7 +4,7 @@ prueba de microservicios para coppel
 ## Como correr el proyecto
 Tienes que crear en la carpeta raiz una carpeta llamada data.
 
-Despues ejecuta el siguiente comando
+
 
 ### Obtencion de llave privada
 en tu terminal linux ejecuta el siguiente comando
