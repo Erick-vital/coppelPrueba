@@ -17,6 +17,7 @@ router = APIRouter()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 SECRET_KEY = os.getenv('SECRET_KEY')
+#SECRET_KEY = 'a35ae5dd7358614df9bc97c6290780cf9c30164b012373ee53c4b0fee249c7fb'
 ALGORITHM = 'HS256'
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -92,7 +93,7 @@ async def post_user(usuario: UserRequest):
     return {"usuario creado" : str(x.inserted_id)}
 
 @router.post('/user/token', response_model=Token)
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
+def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = authenticate_user(form_data.username, form_data.password)
     if not user:
         raise HTTPException(

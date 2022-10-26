@@ -25,6 +25,7 @@ async def search_comics(buscar = 'personajes', nombre = None):
     elif buscar == 'comics' and nombre:
         url = f'https://gateway.marvel.com:443/v1/public/comics?title={nombre}&ts={ts}&apikey={PUBLIC_KEY}&hash={hash}'
 
+    print(url)
     r = requests.get(url)
     js = json.loads(r.text)
     resultados = js['data']['results']

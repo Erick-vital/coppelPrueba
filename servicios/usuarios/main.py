@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends
 from routers import users
 from fastapi.security import OAuth2PasswordRequestForm
+from fastapi.middleware.cors import CORSMiddleware  
 from routers.users import login_for_access_token
 
 app = FastAPI()
@@ -13,5 +14,6 @@ async def root():
 
 @app.post("/token")
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    token = await login_for_access_token(form_data)
+    # posiblemente lleva await
+    token = login_for_access_token(form_data)
     return token
