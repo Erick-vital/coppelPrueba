@@ -87,7 +87,7 @@ docker-compose up
 ```
 
 ### servidor RPC RabbitMq
-es nesecario correr el servidor de rabbit de forma manual esto lo hacemos entrando en el cli del contenedor usuarios y ejecutamos el script **servidor_rpc.py**
+Es necesario correr el servidor de rabbit de forma manual esto lo hacemos entrando en el cli del contenedor usuarios y ejecutamos el script **servidor_rpc.py**
 
 ### NOTAS
 El servicio 3 no me dio tiempo de terminarlo **addcomics** pero hice 2 formas de comunicacion entre los servicios para probar ambas 
