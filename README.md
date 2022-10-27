@@ -85,3 +85,12 @@ Por ultimo ejecuta el siguiente comando
 ```
 docker-compose up
 ```
+
+### servidor RPC RabbitMq
+es nesecario correr el servidor de rabbit de forma manual esto lo hacemos entrando en el cli del contenedor usuarios y ejecutamos el script **servidor_rpc.py**
+
+### NOTAS
+El servicio 3 no me dio tiempo de terminarlo **addcomics** pero hice 2 formas de comunicacion entre los servicios para probar ambas 
+- la primera es que addcomics se comunica con usuarios para poder obtener el token y asi hace la autenticacion, esta comunicacion es por medio de RPC mediante RabbitMQ.
+
+- La segunda se comunica de forma restAPI llamando a los endpoint de servicio buscar para despues poder agregar esta data a mongo db y hacer la vinculacion al usuario
