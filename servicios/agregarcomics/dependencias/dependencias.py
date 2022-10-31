@@ -18,10 +18,7 @@ async def get_token_data(token: str = Depends(oauth2_scheme)):
     try:
         # decodifica el token
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
-        payload['token'] = token
-        print(payload)
-        if username is None:
+        if payload is None:
             raise credentials_exception
     except JWTError:
         raise credentials_exception
